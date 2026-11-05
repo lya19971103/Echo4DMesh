@@ -6,7 +6,7 @@ function player(item){const card=document.createElement('article');card.classNam
  if(item.originalGif){let adjusted=true;const toggle=document.createElement('button');toggle.type='button';toggle.className='geometry-toggle';toggle.textContent='Show original geometry';toggle.onclick=()=>{adjusted=!adjusted;selected=adjusted?item:{gif:item.originalGif,poster:item.originalPoster};img.src=button.getAttribute('aria-pressed')==='true'?selected.gif:selected.poster;card.querySelector('.active-download').href=selected.gif;card.querySelector('h3').textContent=adjusted?item.label:'Whole heart · P1 (original geometry)';toggle.textContent=adjusted?'Show original geometry':'Show display adjustment';};card.querySelector('.controls').append(toggle);}
  return card;}
 for(const [key,id] of [['clinical','clinical-grid'],['wholeheart','wholeheart-grid'],['ct','ct-grid']])for(const item of D[key])document.getElementById(id).append(player(item));
-document.getElementById('comparison-player').append(player(D.comparison));
+const comparisonCard=player(D.comparison);comparisonCard.querySelector('h3').remove();document.getElementById('comparison-player').append(comparisonCard);
 for(const item of D.heldout){const card=document.createElement('article');card.className='card';card.innerHTML=`<h3>${item.label} · held-out A2C</h3><img src="${item.image}" alt="Before and after shape adaptation on matched real A2C ultrasound" loading="lazy">`;document.getElementById('heldout-grid').append(card);}
 document.getElementById('overlap-player').append(player(D.overlap));
 for(const item of D.mri){
